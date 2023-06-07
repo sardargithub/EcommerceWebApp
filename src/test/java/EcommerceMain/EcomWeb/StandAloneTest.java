@@ -43,7 +43,6 @@ public class StandAloneTest {
 		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector(".ng-animating"))));
 		//wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".ng-animating")));
 		driver.findElement(By.xpath("//button[@routerlink='/dashboard/cart']")).click();
-		
 		List<WebElement> cartProducts=driver.findElements(By.xpath("//div[@class='cartSection']/h3"));
 		Boolean match=cartProducts.stream().anyMatch(cartProduct->cartProduct.getText().equals(productName));
 		Assert.assertTrue(match);
@@ -59,9 +58,15 @@ public class StandAloneTest {
 		//js.executeScript("window.scrollBy(0,2000)");
 		//Thread.sleep(5000);
 		//driver.findElement(By.xpath("//*[@class='actions']/a")).click();
-		WebElement element=driver.findElement(By.xpath("//*[contains(text(),'Place Order ')]"));
-		js.executeScript("arguments[0].scrollIntoView();", element);
-		driver.findElement(By.cssSelector(".action__submit")).click();
+		/*
+		 * WebElement
+		 * element=driver.findElement(By.xpath("//*[contains(text(),'Place Order ')]"));
+		 * js.executeScript("arguments[0].scrollIntoView();", element);
+		 * driver.findElement(By.cssSelector(".action__submit")).click();
+		 */
+		WebElement ClickonPlaceorder= driver.findElement(By.cssSelector(".action__submit"));
+		JavascriptExecutor MoveuptoPlaceorderbutton = (JavascriptExecutor) driver;
+		MoveuptoPlaceorderbutton.executeScript("arguments[0].click();", ClickonPlaceorder);
 		
 		String confirmMessage=driver.findElement(By.xpath("//*[@class='hero-primary']")).getText();
 		Assert.assertTrue(confirmMessage.equalsIgnoreCase("Thankyou for the order."));
