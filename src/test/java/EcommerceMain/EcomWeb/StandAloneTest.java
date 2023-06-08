@@ -41,7 +41,8 @@ public class StandAloneTest extends Abstractcomponent{
 		Assert.assertTrue(match);
 		WebDriverWait wait3 = new WebDriverWait(driver,Duration.ofSeconds(5));
 		CheckoutPage cop=cp.clickonCheckoutbutton();
-		cop.SelecttheCountry("india");
+		cop.SelecttheCountry("India");
+		Thread.sleep(3000);
 		ConfirmationPage confirm=cop.submitOrder();
 	//	JavascriptExecutor js = (JavascriptExecutor) driver;
 		
